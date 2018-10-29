@@ -28,6 +28,7 @@ from mycroft.util.lang.parse_de import normalize_de
 from mycroft.util.lang.parse_fr import extractnumber_fr
 from mycroft.util.lang.parse_fr import extract_datetime_fr
 from mycroft.util.lang.parse_fr import normalize_fr
+from mycroft.util.lang.parse_ko import *
 
 from mycroft.util.lang.parse_common import *
 from .log import LOG
@@ -102,10 +103,12 @@ def extract_number(text, short_scale=True, ordinals=False, lang="en-us"):
         return extractnumber_sv(text)
     elif lang_lower.startswith("de"):
         return extractnumber_de(text)
+    elif lang_lower.startswith("ko"):
+        return extractnumber_ko(text)
     # TODO: extractnumber_xx for other languages
     LOG.warning('Language "{}" not recognized! Please make sure your '
                 'language is one of the following: '
-                'en, es, pt, it, fr, sv, de.'.format(lang_lower))
+                'en, es, pt, it, fr, sv, de, ko.'.format(lang_lower))
     return text
 
 
@@ -180,10 +183,12 @@ def extract_datetime(text, anchorDate=None, lang="en-us", default_time=None):
         return extract_datetime_sv(text, anchorDate, default_time)
     elif lang_lower.startswith("de"):
         return extract_datetime_de(text, anchorDate, default_time)
+    elif lang_lower.startswith("ko"):
+        return extract_datetime_ko(text, anchorDate, default_time)
     # TODO: extract_datetime for other languages
     LOG.warning('Language "{}" not recognized! Please make sure your '
                 'language is one of the following: '
-                'en, es, pt, it, fr, sv, de.'.format(lang_lower))
+                'en, es, pt, it, fr, sv, de, ko.'.format(lang_lower))
     return text
     # ==============================================================
 
@@ -217,10 +222,12 @@ def normalize(text, lang="en-us", remove_articles=True):
         return normalize_sv(text, remove_articles)
     elif lang_lower.startswith("de"):
         return normalize_de(text, remove_articles)
+    elif lang_lower.startswith("ko"):
+        return normalize_ko(text, remove_articles)
     # TODO: Normalization for other languages
     LOG.warning('Language "{}" not recognized! Please make sure your '
                 'language is one of the following: '
-                'en, es, pt, it, fr, sv, de.'.format(lang_lower))
+                'en, es, pt, it, fr, sv, de, ko.'.format(lang_lower))
     return text
 
 
